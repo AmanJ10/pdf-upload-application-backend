@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Document {
+  id           Int      @id @default(autoincrement())
+  filename     String   // stored filename (on disk)
+  originalName String   // original upload name
+  filePath     String   // relative path (e.g. uploads/1234.pdf)
+  mimeType     String
+  fileSize     Int
+  createdAt    DateTime @default(now())
+}
